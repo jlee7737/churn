@@ -1,0 +1,23 @@
+
+.card-details {
+  display: none;
+}
+
+.card-details.open {
+  display: table-row;
+}
+
+.table > thead > tr > th {
+  vertical-align: middle;
+  text-align: center;
+}
+.table > tbody > tr > td {
+  vertical-align: middle;
+  text-align: center;
+  border: none;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
