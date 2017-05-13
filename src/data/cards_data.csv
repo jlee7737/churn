@@ -1,6 +1,7 @@
-issuer, name, intro_offer, redeem_value, default_value, affiliate_value, dining_value, gas_value, groceries_value, travel_value, annual_fee, foreign_trans_fee
+issuer, name,intro_offer,redeem_bonus,default_bonus,affiliate_bonus,dining_bonus,gas_bonus,groceries_bonus,travel_bonus, annual_fee, foreign_trans_fee
 Barclaycard, Arrival+,500,0.05,0.02,0,0.02,0,0,0.02,89,0
 Barclaycard, Arrival,250,0.05,0.01,0,0.02,0,0,0.02,0,0
 Citi, Doublecash,0,0,0.02,0,0,0,0,0,0,0.03
 Bank of America, Cash Rewards,100,0.1,0.01,0,0,0.03,0.02,0,0,0.03
 Target, REDcard,0,0,0,0.05,0,0,0,0,0,0.03
+Chase,Amazon Prime Rewards,0,0,0.01,0.03,0.02,0.02,0,0,0,0
