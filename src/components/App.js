@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 
+
 class UserAccounts extends Component {
   render() {
     return (
@@ -9,6 +10,7 @@ class UserAccounts extends Component {
     );
   }
 }
+
 
 class UserInput extends Component {
   render() {
@@ -18,7 +20,8 @@ class UserInput extends Component {
   }
 }
 
-class CardMain extends Component {
+
+class CardRowMain extends Component {
   render() {
     var annual_fee_info = "";
     if (this.props.card.annual_fee !== 0) {
@@ -40,14 +43,16 @@ class CardMain extends Component {
         <td>
           {this.props.card.intro_offer}
         </td>
-        <td colSpan="5">
+        <td>
           test
         </td>
       </tr>
     );
   }
 }
-class CardDetails extends Component {
+
+
+class CardRowDetails extends Component {
   render() {
     var cardDetailsClass = this.props.isOpen ? 'card-details open' : 'card-details';
     return ( 
@@ -61,6 +66,7 @@ class CardDetails extends Component {
     )
   }
 }
+
 
 class CardRow extends Component {
   constructor(props) {
@@ -81,12 +87,13 @@ class CardRow extends Component {
     var card = this.props.card
     return ( 
       <tbody className="card-row">
-        <CardMain card={card} key={card.name} onClick={this.handleOpenDetails} />
-        <CardDetails card={card} key={card.name + "details"} isOpen={this.state.detailsOpen} />
+        <CardRowMain card={card} key={card.name} onClick={this.handleOpenDetails} />
+        <CardRowDetails card={card} key={card.name + "details"} isOpen={this.state.detailsOpen} />
       </tbody>
     )
   }
 }
+
 
 class CardsTable extends Component {
   buildCardRows(cardsData) {
@@ -116,6 +123,7 @@ class CardsTable extends Component {
     );
   }
 }
+
 
 class App extends Component {
   constructor(props) {
