@@ -22,11 +22,36 @@ class UserInput extends Component {
 
 
 class CardRowMain extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      annualRewards : 0
+    };
+    this.calculateAnnualRewards = this.calculateAnnualRewards.bind(this);
+  }
+
+  calculateAnnualRewards() {
+    this.setState({
+      annualRewards : /* add */
+                      this.props.card.redeem_bonus*100*12 +
+                      this.props.card.default_bonus*100*12 + 
+                      this.props.card.affiliate_bonus*100*12 + 
+                      this.props.card.dining_bonus*100*12 + 
+                      this.props.card.gas_bonus*100*12 + 
+                      this.props.card.groceries_bonus*100*12 +
+                      this.props.card.travel_bonus*100*12
+                      /* minus */
+                      - this.props.card.annual_fee
+                      - this.props.card.foreign_trans_fee*100*12
+    });
+  }
+
   render() {
-    var annual_fee_info = "";
+    var annualFeeInfo = "";
     if (this.props.card.annual_fee !== 0) {
-      annual_fee_info = "waived 1st year";
+      annualFeeInfo = "waived 1st year";
     }
+
     return ( 
       <tr className="card-main" onClick={this.props.onClick}>
         <td>
@@ -38,13 +63,10 @@ class CardRowMain extends Component {
         </td>
         <td>
           {this.props.card.annual_fee}<br />
-          {annual_fee_info}
+          {annualFeeInfo}
         </td>
         <td>
-          {this.props.card.intro_offer}
-        </td>
-        <td>
-          test
+          {this.state.annualRewards}
         </td>
       </tr>
     );
@@ -53,13 +75,29 @@ class CardRowMain extends Component {
 
 
 class CardRowDetails extends Component {
+  checkBonusRate(bonusCategory) {
+    if (bonusCategory === 0) {
+      return 0
+    }
+  }
+
   render() {
     var cardDetailsClass = this.props.isOpen ? 'card-details open' : 'card-details';
     return ( 
       <tr id="#{card.name}" className={cardDetailsClass}>
-        <td colSpan="5" style={{backgroundColor: "#0069cd"}}>
-          <div style={{backgroundColor: "#fff"}}>
+        <td colSpan="4">
+          <div className="col-xs-12 col-sm-4" style={{border: "1px solid red"}}>
             {this.props.card.name}
+          </div>
+          <div className="col-xs-12 col-sm-8">
+            <h4>Pros</h4>
+            {this.props.card.redeem_bonus*100 +"%"}
+            {this.props.card.default_bonus*100 +"%"}
+            {this.props.card.affiliate_bonus*100 +"%"}
+            {this.props.card.dining_bonus*100 +"%"}
+            {this.props.card.gas_bonus*100 +"%"}
+            {this.props.card.groceries_bonus*100 +"%"}
+            {this.props.card.travel_bonus*100 +"%"}
           </div>
         </td>
       </tr>
@@ -114,7 +152,6 @@ class CardsTable extends Component {
             <th>Issuer / Card</th>
             <th>Intro Offer</th>
             <th>Annual Fee</th>
-            <th>First-Year Rewards</th>
             <th>Annual Rewards</th>
           </tr>
         </thead>
